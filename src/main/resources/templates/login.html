@@ -22,112 +22,123 @@
 			src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" 
 			integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" 
 			crossorigin="anonymous"></script>
+		<script src="/js/login.js"></script>
+		<link rel="stylesheet" type="text/css" media="all" href="css/login.css" th:href="@{/css/login.css}"/>
 
-	    <title>Hello, world!</title>
+	    <title>登录</title>
 
-		<!-- <script src="/js/datatable.js"></script> -->
 	</head>	
 
 	<body>
 		<noscript><h1>please enable JavaScript in your browser</h1></noscript>
+		<div class="bg">
 		<br>
 		<br>
-		<h1>登录</h1>
-		<!-- <h1 id="employeesTable"></h1> -->
+		
 		<br>
 		<br>
-		<div class="input-group mb-3">
+<!-- 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<span class="input-group-text">用户名：</span>
+				<span class="input-group-text">用户名</span>
 			</div>
 			<input 
-				type="text" class="form-control" placeholder="Username" id="Username"
+				type="text" class="form-control is-invalid" placeholder="Username"  id="Username"
 				aria-label="Username" aria-describedby="basic-addon1">
+			<div class="invalid-feedback">
+      			Please enter your username.
+    		</div>	
+    		<div class="valid-feedback">
+				Looks good!
+			</div>
 		</div>
 		<br>
 		<br>
 		<div class="input-group mb-3">
 			<div class="input-group-prepend">
-				<span class="input-group-text">密码：</span>
+				<span class="input-group-text">密码</span>
 			</div>
 			<input 
-				type="text" class="form-control" placeholder="Password"  id="Password"
+				type="text" class="form-control is-invalid" placeholder="Password"  id="Password"
 				aria-label="Password" aria-describedby="basic-addon1">
+			<div class="invalid-feedback">
+      			Please enter your password.
+    		</div>	
+    		<div class="valid-feedback">
+				Looks good!
+			</div>
+		</div> -->
+<!-- 
+		
+		<button type="button" class="btn btn-dark" id="login" onclick="loginAjaxCall();">登录</button> -->
+
+		<form class="container rounded shadow p-3 mb-5" id="loginContainer" style="max-width: 400px;">
+
+			
+			<!-- <h1 class="text-center">问卷</h1> -->
+			<br>
+			<div class="form-group">
+				<label>用户名</label>
+				<input type="text" class="form-control is-invalid" placeholder="Username" id="Username"
+					   aria-label="Password" aria-describedby="basic-addon1">
+				<div class="invalid-feedback">Please enter your username.(at least 1 characters)</div>	
+    			<div class="valid-feedback">Looks good!</div>
+			</div>
+			<div class="form-group">
+				<label>密码</label>
+				<input type="password" class="form-control is-invalid" placeholder="Password"  id="Password"
+					   aria-label="Password" aria-describedby="basic-addon1">
+				<div class="invalid-feedback">Password must be more than 8 characters.</div>	
+    			<div class="valid-feedback">Looks good!</div>
+			</div>
+			<p class="text-right" data-toggle="modal" data-target="#Modal"><a class="text-primary" href="#" >还没账号？点我注册！</a></p>
+			<button type="button" class="btn btn-primary btn-lg btn-block" id="login" onclick="loginAjaxCall();" disabled>登录</button>
+						<!-- <br> -->
+			
+		</form>
+
+		<div class="modal fade rounded shadow p-3 mb-5" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">注册</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+
+			    <form>
+					<div class="form-group" id="alert_here">
+						<label>用户名</label>
+						<input type="text" class="form-control is-invalid" placeholder="Username" id="UsernameSignup"
+							   aria-label="Password" aria-describedby="basic-addon1">
+						<div class="invalid-feedback">Please enter your username.(at least 1 characters)</div>	
+		    			<div class="valid-feedback">Looks good!</div>
+					</div>
+					<div class="form-group">
+						<label>密码</label>
+						<input type="password" class="form-control is-invalid" placeholder="Password" id="PasswordSignup"
+							   aria-label="Password" aria-describedby="basic-addon1">
+						<div class="invalid-feedback">Password must be more than 8 characters.</div>	
+		    			<div class="valid-feedback">Looks good!</div>
+					</div>
+				</form>
+
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary btn-lg btn-block" id="signup" onclick="signupAjaxCall();" disabled>注册</button>
+		      </div>
+		    </div>
+		  </div>
 		</div>
 
 
-		<button type="button" class="btn btn-light" id="signup">注册</button>
-		<button type="button" class="btn btn-dark" id="login" onclick="loginAjaxCall();">登录</button>
 
-		<script type="text/javascript">
-	        var alert = $('body');
-			// $("#login").click(loginAjaxCall);
-			function loginAjaxCall(){
-				alert.find('.alert').remove();
-				alert.prepend(`
-					   			<div class="alert alert-primary" role="alert" id="loging">
-									loging...
-								</div>
-							`
-							);
-				var person = {
-		            username:$("#Username").val(),
-		            password:$("#Password").val()
-	        	};
-
-				$.ajax({
-					type: "post",
-			  		url: "/login",
-			  		cache: false,    
-					data: JSON.stringify(person),
-					// dataType: 'json',// satisfied response type
-					contentType: "application/json",// request type
-			 		success: function(response){
-				    	$('#result').html("");
-				    	console.log(response);
-			   			// var obj = JSON.parse(response);
-			   			// console.log(obj);
-			   			var obj = response;
-			   			if(response.constructor.name == "String") obj = JSON.parse(response);
-			   			if(obj.result == "success") {
-			   				alert.find('.alert').remove();
-				   			alert.prepend(`
-					   			<div class="alert alert-success" role="alert">
-									login success!
-								</div>
-							`
-							);
-							
-				   		}
-				   		else {
-				   			alert.find('.alert').remove();
-				   			alert.prepend(`
-					   			<div class="alert alert-warning" role="alert">
-									username or password wrong!
-								</div>
-							`
-							);
-							
-				   		}
-
-			   		},
-				   	error: function(){
-				   		alert.find('.alert').remove();
-				   		alert.prepend(`
-				   			<div class="alert alert-danger" role="alert">
-								login failed, please check your network!
-							</div>
-						`
-						);
-				   		
-				   	}
-			    });
-			};
-			</script>
 
 
 		<br>
 		<br>
-
+		</div>
 	</body>
 </html>

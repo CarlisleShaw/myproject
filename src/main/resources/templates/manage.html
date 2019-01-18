@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	    <!-- Optional JavaScript -->
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script
+		  src="http://code.jquery.com/jquery-3.3.1.min.js"
+		  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+		  crossorigin="anonymous"></script>
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" 
+			integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" 
+			crossorigin="anonymous"></script>
+		<script 
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" 
+			integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" 
+			crossorigin="anonymous"></script>
+		<script src="/js/manage.js"></script>
+
+	    <title>Hello, world!</title>
+
+	</head>	
+
+	<body>
+		<noscript><h1>please enable JavaScript in your browser</h1></noscript>
+
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Features</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#">Pricing</a>
+					</li>
+				</ul>
+				<button class="btn btn-outline-success my-2 my-sm-0" id="logout" onclick="logout();">退出登录</button>
+			</div>
+		</nav>
+		<br>
+		<br>
+		<button type="button" class="btn btn-primary" onclick="create();">创建问卷</button>
+		<br>
+		<br>
+
+		<table class="table table-striped"  style="word-break:break-all; word-wrap:break-all; table-layout:">
+			<thead>
+				<tr>
+					<th scope="col" style="width: 5%">#</th>
+				  	<th scope="col" style="width: 50%">问卷名</th>
+					<th scope="col" style="width: 15%">问卷ID</th>
+					<th scope="col" style="width: 15%">创建时间</th>
+					<th scope="col" colspan="2" style="width: 15%">操作</th>	
+				</tr>
+			</thead>
+			<tbody id="form-body">
+
+ 			</tbody>
+		</table>
+		<br>
+		<br>
+
+	</body>
+</html>
